@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Exercises</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+  
+
+</head>
+
+<body>
+    <header id="header">
+        <div class="d-flex flex-column">
+        </div>
+      </header>
+    <main id="main">
+    <div class="container">
+    <div class="dateShow" id="dateShow">
+        <input type="button" id="buttonDate" name="dateShow" value="Get the dates" onclick="dateShow()">
+    </div>
+    <br><br>
+    
+    <div class="areaCalc" id="areaCalc">
+        <label for="areaCalc">Calculate an area of triangle:</label><br><br>
+        <label for="sideA">First side:</label>
+        <input type="text"  name="sideA" id="sideA" value="" size="4"><br><br>
+        <label for="sideB">Second side:</label>
+        <input type="text"  name="sideB" id="sideB" value="" size="4"><br><br>
+        <label for="sideC">Third side:</label>
+        <input type="text"  name="sideC" id="sideC" value="" size="4"><br>
+        <br>
+        <input type="button" id="buttoncalcArea" name="calcArea" value="Get area result" onclick="calcArea()">
+        <br><br>
+        <p id="area" name="area"></p>
+
+    </div>
+    <br>
+    
+    <div class="animatingString" id="animatingString">
+        <label for="animatingString">Type a string to get a reversed one. </label><br><br>   
+        <input type="text" name="targetInput" id="targetInput">
+        <br><br>
+        <input type="button" id="buttonAnimate" name="animate" value="Animate the String" onclick="animateString('targetInput')">
+        <br><br>
+        <p id="animateArea" name="animateArea"></p>
+    </div>
+    
+    <br>
+    <div class="guessNumber" id="guessNumber">
+        <label for="guessNumber">Play Guess the Number. </label><br><br>
+       <input type="button" id="buttonGuess" name="guiess" value="Guess the Number" onclick="guessNumber()">
+       <br><br>
+    </div>
+    <br><br>
+</div>
+</main>
+</body>
+<script>
+    function dateShow() {
+            var today = new Date();
+            var dd = today.getDate();
+            
+
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd
+            < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = mm + '-' + dd + '-' + yyyy;
+            alert(today);
+            today = mm + '/' + dd + '/' + yyyy;
+            alert(today);
+            today = dd + '-' + mm + '-' + yyyy;
+            alert(today);
+            today = dd + '/' + mm + '/' + yyyy;
+            alert(today);
+        }
+
+        function calcArea() {
+            var sideA = parseFloat(document.getElementById("sideA").value);
+            var sideB = parseFloat(document.getElementById("sideB").value);
+            var sideC = parseFloat(document.getElementById("sideC").value);
+            var perimeter = (sideA + sideB + sideC) / 2;
+            var area = Math.sqrt(perimeter * ((perimeter - sideA) * (perimeter - sideB) * (perimeter - sideC)));
+            document.getElementById("area").innerHTML = area;
+        }
+
+        function animateString(id) {
+            var element = document.getElementById(id);            
+            var textNode = document.getElementById("animateArea");            
+            textNode.innerHTML = element.value;
+            var text = textNode.innerHTML;
+
+            setInterval(function () {
+                text = text[text.length - 1] + text.substring(0, text.length - 1);            
+                document.getElementById("animateArea").innerHTML = text;
+            }, 200);
+        }
+
+        function guessNumber() {
+            var num = Math.ceil(Math.random() * 10);
+            var gnum = prompt('Guess the number between 1 and 10 inclusive');
+            if (gnum == num)
+                alert('Matched');
+            else
+                alert('Not matched, the number was ' + num);
+        }
+</script>
+</html>
